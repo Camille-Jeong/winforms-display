@@ -1,0 +1,9 @@
+C:\Users\Camille-Jeong\Documents\Visual Studio 2015\Projects\display-pi\Visual Style\Visual Style\bin\Debug\Visual Style.exe.config
+C:\Users\Camille-Jeong\Documents\Visual Studio 2015\Projects\display-pi\Visual Style\Visual Style\bin\Debug\Visual Style.exe
+C:\Users\Camille-Jeong\Documents\Visual Studio 2015\Projects\display-pi\Visual Style\Visual Style\bin\Debug\Visual Style.pdb
+C:\Users\Camille-Jeong\Documents\Visual Studio 2015\Projects\display-pi\Visual Style\Visual Style\obj\Debug\Visual_Style.Form1.resources
+C:\Users\Camille-Jeong\Documents\Visual Studio 2015\Projects\display-pi\Visual Style\Visual Style\obj\Debug\Visual_Style.Properties.Resources.resources
+C:\Users\Camille-Jeong\Documents\Visual Studio 2015\Projects\display-pi\Visual Style\Visual Style\obj\Debug\Visual Style.csproj.GenerateResource.Cache
+C:\Users\Camille-Jeong\Documents\Visual Studio 2015\Projects\display-pi\Visual Style\Visual Style\obj\Debug\Visual Style.exe
+C:\Users\Camille-Jeong\Documents\Visual Studio 2015\Projects\display-pi\Visual Style\Visual Style\obj\Debug\Visual Style.pdb
+C:\Users\Camille-Jeong\Documents\Visual Studio 2015\Projects\display-pi\Visual Style\Visual Style\obj\Debug\Visual Style.csprojResolveAssemblyReference.cache
