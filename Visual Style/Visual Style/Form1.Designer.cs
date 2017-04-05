@@ -67,7 +67,7 @@
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timeStemp_Tick);
+            this.timer1.Tick += new System.EventHandler(this.TimeStemp_Tick);
             // 
             // play
             // 
@@ -77,7 +77,7 @@
             this.play.TabIndex = 5;
             this.play.Text = "▶";
             this.play.UseVisualStyleBackColor = true;
-            this.play.Click += new System.EventHandler(this.stop_Click);
+            this.play.Click += new System.EventHandler(this.Play_Click);
             // 
             // Form1
             // 
