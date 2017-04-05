@@ -24,140 +24,107 @@ namespace Display_Play
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Mode = 0;
-            Artist.Text = "this is camille and duke's project";
-            Title.Text = "And this is project's play view with flow text";
-            setLocation(Artist);
-            setLocation(Title);
-            Action();
+            Artist.Text = "Justin Bieber";
+            Title.Text = "Love Yourself (PURPOSE : The Movement)";
+
+            SetMode();
+            SetDefaultUI();
+            SetMarquee();
             
         }
-
-        private void setLocation(Label label)
+        private void SetDefaultUI()
         {
-            int startXpos;
-            int startYpos;
-
-            if(label.Width <= this.Width)
-            {
-                startXpos = (this.Width - label.Width) / 2;
-                startYpos = label.Location.Y;
-            }
-            else
-            {
-                startXpos = 0;
-                startYpos = label.Location.Y;
-                if (Mode == 0 && string.Equals(label.Name, "Artist")) Mode = 1;
-                else if (Mode == 0 && string.Equals(label.Name, "Title")) Mode = 2;
-                else if (Mode == 1) Mode = 3;
-            }
-            label.Location = new Point(startXpos, startYpos);
+            LocationManager.GetFormsValue(this.Width, this.Height);
+            LocationManager.SetLabelLocation(Artist);
+            LocationManager.SetLabelLocation(Title);
         }
 
-        private void Action()
+        private void SetMode()
+        {
+            if (Artist.Width > this.Width)
+            {
+                if (Title.Width > this.Width)
+                    Mode = 3;
+                else
+                    Mode = 1;
+            }
+            else if (Title.Width > this.Width)
+                Mode = 2;
+            else
+                Mode = 0;
+        }
+
+        private void SetMarquee()
         {
             Status = 0;
+            MarqueeManager.GetFormsValue(this.Width, this.Height, temp);
             if (Mode != 0)
             {
                 timer1.Start();
             }
+
         }
-
-        private void Move(Label label)
-        {
-            int xpos, ypos, _xpos;
-            ypos = label.Location.Y;
-
-            if (temp.Left == 0)
-            {
-                label.Location = new System.Drawing.Point(0, ypos);
-                TempSetting(label);
-            }
-            else
-            {
-                xpos = label.Location.X - 1;
-                _xpos = temp.Location.X - 1;
-                label.Location = new System.Drawing.Point(xpos, ypos);
-                temp.Location = new System.Drawing.Point(_xpos, ypos);
-            }
-        }
-
-        private void TempSetting(Label label)
-        {
-            int xpos, ypos;
-            xpos = label.Right + this.Width / 3;
-            ypos = label.Location.Y;
-
-            temp.Text = label.Text;
-            temp.Location = new Point(xpos, ypos);
-        }
-
-        private bool CheckCycle(Label label)
-        {
-            if (label.Left == 0) return true;
-            else return false;
-        }
-
+        
         private void timer1_Tick(object sender, EventArgs e)
         {
             if(Mode == 1)
             {
-                if (CheckCycle(Artist))
+                if (MarqueeManager.CheckCycle(Artist))
                 {
                     if(Status == 0)
                     {
-                        TempSetting(Artist);
+                        MarqueeManager.TempSetting(Artist);
                         Status = 1;
                     }
                     else
                     {
                         if (Tcnt == WaitTime)
                         {
-                            Move(Artist);
+                            MarqueeManager.Move(Artist);
                             Tcnt = 0;
                         }
                         else
                             Tcnt++;
                     }                    
                 }
-                else Move(Artist);
+                else MarqueeManager.Move(Artist);
             }
             else if(Mode == 2)
             {
-                if (CheckCycle(Title))
+                if (MarqueeManager.CheckCycle(Title))
                 {
                     if (Status == 0)
                     {
-                        TempSetting(Title);
+                        MarqueeManager.TempSetting(Title);
                         Status = 1;
                     }
                     else
                     {
                         if (Tcnt == WaitTime)
                         {
-                            Move(Title);
+                            MarqueeManager.Move(Title);
                             Tcnt = 0;
                         }
                         else
                             Tcnt++;
                     }
                 }
-                else Move(Title);
+                else MarqueeManager.Move(Title);
             }
             else if(Mode == 3)
             {
-                if (CheckCycle(Artist))
+                if (MarqueeManager.CheckCycle(Artist))
                 {
                     if (Status == 0)
                     {
-                        TempSetting(Artist);
+                        MarqueeManager.TempSetting(Artist);
                         Status = 1;
                     }
                     else if (Status == 1)
                     {
                         if (Tcnt == WaitTime)
                         {
-                            Move(Artist);
+                            MarqueeManager.Move(Artist);
                             Tcnt = 0;
                             Status = 2;
                         }
@@ -177,19 +144,19 @@ namespace Display_Play
                     else if (Status == 3)
                     {
                         Status = 4;
-                        TempSetting(Title);
-                        Move(Title);
+                        MarqueeManager.TempSetting(Title);
+                        MarqueeManager.Move(Title);
                     }
                     else if (Status == 4)
                     {
-                        if (CheckCycle(Title))
+                        if (MarqueeManager.CheckCycle(Title))
                         {
                             Status = 0;
                         }
-                        else Move(Title);
+                        else MarqueeManager.Move(Title);
                     }
                 }
-                else Move(Artist);
+                else MarqueeManager.Move(Artist);
             }
         }
     }
