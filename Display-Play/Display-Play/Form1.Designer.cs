@@ -33,7 +33,10 @@
             this.Artist = new System.Windows.Forms.Label();
             this.Title = new System.Windows.Forms.Label();
             this.temp = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.RemainingTime = new System.Windows.Forms.Label();
+            this.PlayingTime = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -73,14 +76,41 @@
             this.temp.Size = new System.Drawing.Size(0, 129);
             this.temp.TabIndex = 3;
             // 
-            // progressBar1
+            // ProgressBar
             // 
-            this.progressBar1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.progressBar1.Location = new System.Drawing.Point(158, 672);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1155, 42);
-            this.progressBar1.TabIndex = 4;
-            this.progressBar1.Value = 50;
+            this.ProgressBar.ForeColor = System.Drawing.Color.Gainsboro;
+            this.ProgressBar.Location = new System.Drawing.Point(185, 672);
+            this.ProgressBar.Name = "ProgressBar";
+            this.ProgressBar.Size = new System.Drawing.Size(1102, 42);
+            this.ProgressBar.TabIndex = 4;
+            this.ProgressBar.Value = 50;
+            this.ProgressBar.Click += new System.EventHandler(this.ProgressBar_Click);
+            // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // RemainingTime
+            // 
+            this.RemainingTime.AutoSize = true;
+            this.RemainingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemainingTime.ForeColor = System.Drawing.Color.White;
+            this.RemainingTime.Location = new System.Drawing.Point(1302, 668);
+            this.RemainingTime.Name = "RemainingTime";
+            this.RemainingTime.Size = new System.Drawing.Size(126, 46);
+            this.RemainingTime.TabIndex = 5;
+            this.RemainingTime.Text = "label1";
+            // 
+            // PlayingTime
+            // 
+            this.PlayingTime.AutoSize = true;
+            this.PlayingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayingTime.ForeColor = System.Drawing.Color.White;
+            this.PlayingTime.Location = new System.Drawing.Point(-2, 668);
+            this.PlayingTime.Name = "PlayingTime";
+            this.PlayingTime.Size = new System.Drawing.Size(126, 46);
+            this.PlayingTime.TabIndex = 6;
+            this.PlayingTime.Text = "label1";
             // 
             // Form1
             // 
@@ -88,7 +118,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1474, 829);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.PlayingTime);
+            this.Controls.Add(this.RemainingTime);
+            this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.temp);
             this.Controls.Add(this.Title);
             this.Controls.Add(this.Artist);
@@ -106,7 +138,10 @@
         private System.Windows.Forms.Label Artist;
         private System.Windows.Forms.Label Title;
         private System.Windows.Forms.Label temp;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar ProgressBar;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Label RemainingTime;
+        private System.Windows.Forms.Label PlayingTime;
     }
 }
 

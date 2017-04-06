@@ -12,14 +12,24 @@ namespace Display_Play
     {
         static int Width, Height;
         static Label Temp;
+        static int Tcnt;
+        static int Status;
+        static int WaitTime;
 
-        static public void GetFormsValue(int width, int height, Label temp)
+        static public void GetFormsValue(int width, int height, Label _temp)
         {
             Width = width;
             Height = height;
-            Temp = temp;
+            Temp = _temp;
         }
 
+        static public void SetDefault(int _waitTime)
+        {
+            Status = 0;
+            Tcnt = 0;
+            WaitTime = _waitTime;
+
+        }
         static public void Move(Label label)
         {
             int xpos, ypos, _xpos;
@@ -53,6 +63,101 @@ namespace Display_Play
         {
             if (label.Left == 0) return true;
             else return false;
+        }
+
+        static public void TimerTick(int Mode, Label Artist, Label Title)
+        {
+            if (Mode == 1)
+            {
+                if (CheckCycle(Artist))
+                {
+                    if (Status == 0)
+                    {
+                        TempSetting(Artist);
+                        Status = 1;
+                    }
+                    else
+                    {
+                        if (Tcnt == WaitTime)
+                        {
+                            Move(Artist);
+                            Tcnt = 0;
+                        }
+                        else
+                            Tcnt++;
+                    }
+                }
+                else Move(Artist);
+            }
+            else if (Mode == 2)
+            {
+                if (CheckCycle(Title))
+                {
+                    if (Status == 0)
+                    {
+                        TempSetting(Title);
+                        Status = 1;
+                    }
+                    else
+                    {
+                        if (Tcnt == WaitTime)
+                        {
+                            Move(Title);
+                            Tcnt = 0;
+                        }
+                        else
+                            Tcnt++;
+                    }
+                }
+                else Move(Title);
+            }
+            else if (Mode == 3)
+            {
+                if (CheckCycle(Artist))
+                {
+                    if (Status == 0)
+                    {
+                        TempSetting(Artist);
+                        Status = 1;
+                    }
+                    else if (Status == 1)
+                    {
+                        if (Tcnt == WaitTime)
+                        {
+                            Move(Artist);
+                            Tcnt = 0;
+                            Status = 2;
+                        }
+                        else
+                            Tcnt++;
+                    }
+                    else if (Status == 2)
+                    {
+                        if (Tcnt == 50)
+                        {
+                            Tcnt = 0;
+                            Status = 3;
+                        }
+                        else
+                            Tcnt++;
+                    }
+                    else if (Status == 3)
+                    {
+                        Status = 4;
+                        TempSetting(Title);
+                        Move(Title);
+                    }
+                    else if (Status == 4)
+                    {
+                        if (CheckCycle(Title))
+                        {
+                            Status = 0;
+                        }
+                        else Move(Title);
+                    }
+                }
+                else Move(Artist);
+            }
         }
     }
 }

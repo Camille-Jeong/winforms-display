@@ -12,10 +12,11 @@ namespace Display_Play
 {
     public partial class Form1 : Form
     {
-        int Tcnt = 0;
         int Mode = 0;
-        int Status = 0;
-        int WaitTime = 200; 
+        int count_B = 0, count_G = 0, count_S = 0;  //Button clicked, gap(in interval), Second(in interval)
+        int gap;                                    //set progressbar increase cycle
+        int length_s = 60;                           //length.text second
+        static public int state_s = 0;              //state.text second
 
         public Form1()
         {
@@ -27,10 +28,13 @@ namespace Display_Play
             Artist.Text = "Justin Bieber";
             Title.Text = "Love Yourself (PURPOSE : The Movement)";
 
+            //Artist.Text = "Beauty and the Beast(Beauty and the Beast.OST)";
+            //Title.Text = "Ariana Grande && John Legend(Beauty and the Beast.OST)";
+
             SetMode();
             SetDefaultUI();
             SetMarquee();
-            
+            SetProgressBar();
         }
         private void SetDefaultUI()
         {
@@ -56,107 +60,48 @@ namespace Display_Play
 
         private void SetMarquee()
         {
-            Status = 0;
             MarqueeManager.GetFormsValue(this.Width, this.Height, temp);
             if (Mode != 0)
             {
-                timer1.Start();
+                MarqueeManager.SetDefault(200);
             }
 
         }
-        
+
+        private void SetProgressBar()
+        {
+            ProgressBarManager.GetFormsValue(ProgressBar, PlayingTime, RemainingTime);
+            ProgressBarManager.SetDefault(20);
+        }
+
+        private void ProgressBar_Click(object sender, EventArgs e)
+        {
+            if (ProgressBarManager.Start())
+            {
+
+                timer1.Start();
+                timer2.Start();
+            }
+            else
+            {
+                timer1.Stop();
+                timer2.Stop();
+                SetDefaultUI();
+            }
+               
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(Mode == 1)
+            MarqueeManager.TimerTick(Mode, Artist, Title);
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (ProgressBarManager.TimerTick())
             {
-                if (MarqueeManager.CheckCycle(Artist))
-                {
-                    if(Status == 0)
-                    {
-                        MarqueeManager.TempSetting(Artist);
-                        Status = 1;
-                    }
-                    else
-                    {
-                        if (Tcnt == WaitTime)
-                        {
-                            MarqueeManager.Move(Artist);
-                            Tcnt = 0;
-                        }
-                        else
-                            Tcnt++;
-                    }                    
-                }
-                else MarqueeManager.Move(Artist);
-            }
-            else if(Mode == 2)
-            {
-                if (MarqueeManager.CheckCycle(Title))
-                {
-                    if (Status == 0)
-                    {
-                        MarqueeManager.TempSetting(Title);
-                        Status = 1;
-                    }
-                    else
-                    {
-                        if (Tcnt == WaitTime)
-                        {
-                            MarqueeManager.Move(Title);
-                            Tcnt = 0;
-                        }
-                        else
-                            Tcnt++;
-                    }
-                }
-                else MarqueeManager.Move(Title);
-            }
-            else if(Mode == 3)
-            {
-                if (MarqueeManager.CheckCycle(Artist))
-                {
-                    if (Status == 0)
-                    {
-                        MarqueeManager.TempSetting(Artist);
-                        Status = 1;
-                    }
-                    else if (Status == 1)
-                    {
-                        if (Tcnt == WaitTime)
-                        {
-                            MarqueeManager.Move(Artist);
-                            Tcnt = 0;
-                            Status = 2;
-                        }
-                        else
-                            Tcnt++;
-                    }
-                    else if (Status == 2)
-                    {
-                        if (Tcnt == 50)
-                        {
-                            Tcnt = 0;
-                            Status = 3;
-                        }
-                        else
-                            Tcnt++;
-                    }
-                    else if (Status == 3)
-                    {
-                        Status = 4;
-                        MarqueeManager.TempSetting(Title);
-                        MarqueeManager.Move(Title);
-                    }
-                    else if (Status == 4)
-                    {
-                        if (MarqueeManager.CheckCycle(Title))
-                        {
-                            Status = 0;
-                        }
-                        else MarqueeManager.Move(Title);
-                    }
-                }
-                else MarqueeManager.Move(Artist);
+                timer1.Stop();
+                timer2.Stop();
             }
         }
     }
