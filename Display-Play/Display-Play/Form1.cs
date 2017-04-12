@@ -13,11 +13,9 @@ namespace Display_Play
     public partial class Form1 : Form
     {
         int Mode = 0;
-        int count_B = 0, count_G = 0, count_S = 0;  //Button clicked, gap(in interval), Second(in interval)
-        int gap;                                    //set progressbar increase cycle
-        int length_s = 60;                           //length.text second
-        static public int state_s = 0;              //state.text second
-
+        int space = 200;
+        int length = 4000;
+        
         public Form1()
         {
             InitializeComponent();
@@ -31,16 +29,21 @@ namespace Display_Play
             //Artist.Text = "Beauty and the Beast(Beauty and the Beast.OST)";
             //Title.Text = "Ariana Grande && John Legend(Beauty and the Beast.OST)";
 
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
+
             SetMode();
-            SetDefaultUI();
             SetMarquee();
             SetProgressBar();
+            SetDefaultUI(length);
         }
-        private void SetDefaultUI()
+        private void SetDefaultUI(int _length)
         {
             LocationManager.GetFormsValue(this.Width, this.Height);
             LocationManager.SetLabelLocation(Artist);
             LocationManager.SetLabelLocation(Title);
+            LocationManager.SetProgressBarLocation(ProgressBar,PlayingTime,RemainingTime);
+            LocationManager.SetStatusLabelsLocation(Bitwidth,SamplingRate,FileFormat);
         }
 
         private void SetMode()
@@ -63,7 +66,7 @@ namespace Display_Play
             MarqueeManager.GetFormsValue(this.Width, this.Height, temp);
             if (Mode != 0)
             {
-                MarqueeManager.SetDefault(200);
+                MarqueeManager.SetDefault(space);
             }
 
         }
@@ -71,14 +74,13 @@ namespace Display_Play
         private void SetProgressBar()
         {
             ProgressBarManager.GetFormsValue(ProgressBar, PlayingTime, RemainingTime);
-            ProgressBarManager.SetDefault(20);
+            ProgressBarManager.SetDefault(length);
         }
 
         private void ProgressBar_Click(object sender, EventArgs e)
         {
             if (ProgressBarManager.Start())
             {
-
                 timer1.Start();
                 timer2.Start();
             }
@@ -86,7 +88,7 @@ namespace Display_Play
             {
                 timer1.Stop();
                 timer2.Stop();
-                SetDefaultUI();
+                SetDefaultUI(length);
             }
                
         }
