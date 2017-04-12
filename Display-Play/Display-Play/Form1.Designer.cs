@@ -37,6 +37,9 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.RemainingTime = new System.Windows.Forms.Label();
             this.PlayingTime = new System.Windows.Forms.Label();
+            this.Bitwidth = new System.Windows.Forms.Label();
+            this.SamplingRate = new System.Windows.Forms.Label();
+            this.FileFormat = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -93,24 +96,57 @@
             // RemainingTime
             // 
             this.RemainingTime.AutoSize = true;
-            this.RemainingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemainingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RemainingTime.ForeColor = System.Drawing.Color.White;
             this.RemainingTime.Location = new System.Drawing.Point(1302, 668);
             this.RemainingTime.Name = "RemainingTime";
-            this.RemainingTime.Size = new System.Drawing.Size(126, 46);
+            this.RemainingTime.Size = new System.Drawing.Size(138, 51);
             this.RemainingTime.TabIndex = 5;
             this.RemainingTime.Text = "label1";
             // 
             // PlayingTime
             // 
             this.PlayingTime.AutoSize = true;
-            this.PlayingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PlayingTime.ForeColor = System.Drawing.Color.White;
             this.PlayingTime.Location = new System.Drawing.Point(-2, 668);
             this.PlayingTime.Name = "PlayingTime";
-            this.PlayingTime.Size = new System.Drawing.Size(126, 46);
+            this.PlayingTime.Size = new System.Drawing.Size(138, 51);
             this.PlayingTime.TabIndex = 6;
             this.PlayingTime.Text = "label1";
+            // 
+            // Bitwidth
+            // 
+            this.Bitwidth.AutoSize = true;
+            this.Bitwidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bitwidth.ForeColor = System.Drawing.Color.White;
+            this.Bitwidth.Location = new System.Drawing.Point(-2, 585);
+            this.Bitwidth.Name = "Bitwidth";
+            this.Bitwidth.Size = new System.Drawing.Size(138, 51);
+            this.Bitwidth.TabIndex = 7;
+            this.Bitwidth.Text = "label1";
+            // 
+            // SamplingRate
+            // 
+            this.SamplingRate.AutoSize = true;
+            this.SamplingRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SamplingRate.ForeColor = System.Drawing.Color.White;
+            this.SamplingRate.Location = new System.Drawing.Point(660, 585);
+            this.SamplingRate.Name = "SamplingRate";
+            this.SamplingRate.Size = new System.Drawing.Size(138, 51);
+            this.SamplingRate.TabIndex = 8;
+            this.SamplingRate.Text = "label1";
+            // 
+            // FileFormat
+            // 
+            this.FileFormat.AutoSize = true;
+            this.FileFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FileFormat.ForeColor = System.Drawing.Color.White;
+            this.FileFormat.Location = new System.Drawing.Point(1302, 585);
+            this.FileFormat.Name = "FileFormat";
+            this.FileFormat.Size = new System.Drawing.Size(138, 51);
+            this.FileFormat.TabIndex = 9;
+            this.FileFormat.Text = "label1";
             // 
             // Form1
             // 
@@ -118,6 +154,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1474, 829);
+            this.Controls.Add(this.FileFormat);
+            this.Controls.Add(this.SamplingRate);
+            this.Controls.Add(this.Bitwidth);
             this.Controls.Add(this.PlayingTime);
             this.Controls.Add(this.RemainingTime);
             this.Controls.Add(this.ProgressBar);
@@ -142,6 +181,9 @@
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Label RemainingTime;
         private System.Windows.Forms.Label PlayingTime;
+        private System.Windows.Forms.Label Bitwidth;
+        private System.Windows.Forms.Label SamplingRate;
+        private System.Windows.Forms.Label FileFormat;
     }
 }
 

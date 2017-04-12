@@ -13,7 +13,7 @@ namespace Display_Play
         static int gap;                        //set progressbar increase cycle
         static int length_s;                   //length.text second
         static public int state_s;             //state.text second
-
+        static public bool mode = true;
 
         static ProgressBar ProgressBar;
         static Label PlayingTime;
@@ -32,11 +32,15 @@ namespace Display_Play
             count_G = 0;
             count_S = 0;
             length_s = _length_s;
+            if (length_s < 3600)
+                mode = true;
+            else
+                mode = false;
             state_s = 0;
             gap = length_s / 10;
             ProgressBar.Value = 0;
-            PlayingTime.Text = TimeSpan.FromSeconds(state_s).ToString();
-            RemainingTime.Text = TimeSpan.FromSeconds(length_s).ToString();
+            PlayingTime.Text = CheckLength(state_s);
+            RemainingTime.Text = CheckLength(length_s);
         }
 
         static public bool TimerTick()
@@ -65,8 +69,8 @@ namespace Display_Play
                 else
                     state_s += 1;
 
-                PlayingTime.Text = TimeSpan.FromSeconds(state_s).ToString();
-                RemainingTime.Text = TimeSpan.FromSeconds(length_s - state_s).ToString();
+                PlayingTime.Text = CheckLength(state_s);
+                RemainingTime.Text = CheckLength(length_s - state_s);
             }
 
             return _return;
@@ -79,8 +83,8 @@ namespace Display_Play
             if (count_B == 1)
             {
                 state_s = 1;
-                PlayingTime.Text = TimeSpan.FromSeconds(state_s).ToString();
-                RemainingTime.Text = TimeSpan.FromSeconds(length_s - state_s).ToString();
+                PlayingTime.Text = CheckLength(state_s);
+                RemainingTime.Text = CheckLength(length_s - state_s);
                 _return = true;
             }
             if (count_B % 2 == 1)
@@ -94,5 +98,15 @@ namespace Display_Play
             }
             return _return;
         }
+
+        static public string CheckLength(int length)
+        {
+            string _return;
+            if (mode)
+                _return = TimeSpan.FromSeconds(length).ToString(@"mm\:ss");
+            else
+                _return = TimeSpan.FromSeconds(length).ToString(@"hh\:mm\:ss");
+            return _return;
+        } 
     }
 }
