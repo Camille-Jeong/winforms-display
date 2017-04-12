@@ -122,9 +122,9 @@
             this.Bitwidth.ForeColor = System.Drawing.Color.White;
             this.Bitwidth.Location = new System.Drawing.Point(-2, 585);
             this.Bitwidth.Name = "Bitwidth";
-            this.Bitwidth.Size = new System.Drawing.Size(138, 51);
+            this.Bitwidth.Size = new System.Drawing.Size(169, 51);
             this.Bitwidth.TabIndex = 7;
-            this.Bitwidth.Text = "label1";
+            this.Bitwidth.Text = "bitwidth";
             // 
             // SamplingRate
             // 
@@ -133,9 +133,9 @@
             this.SamplingRate.ForeColor = System.Drawing.Color.White;
             this.SamplingRate.Location = new System.Drawing.Point(660, 585);
             this.SamplingRate.Name = "SamplingRate";
-            this.SamplingRate.Size = new System.Drawing.Size(138, 51);
+            this.SamplingRate.Size = new System.Drawing.Size(270, 51);
             this.SamplingRate.TabIndex = 8;
-            this.SamplingRate.Text = "label1";
+            this.SamplingRate.Text = "samplingrate";
             // 
             // FileFormat
             // 
@@ -144,9 +144,9 @@
             this.FileFormat.ForeColor = System.Drawing.Color.White;
             this.FileFormat.Location = new System.Drawing.Point(1302, 585);
             this.FileFormat.Name = "FileFormat";
-            this.FileFormat.Size = new System.Drawing.Size(138, 51);
+            this.FileFormat.Size = new System.Drawing.Size(200, 51);
             this.FileFormat.TabIndex = 9;
-            this.FileFormat.Text = "label1";
+            this.FileFormat.Text = "fileformat";
             // 
             // Form1
             // 

@@ -30,7 +30,7 @@ namespace Display_Play
             //Title.Text = "Ariana Grande && John Legend(Beauty and the Beast.OST)";
 
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
 
             SetMode();
             SetMarquee();
