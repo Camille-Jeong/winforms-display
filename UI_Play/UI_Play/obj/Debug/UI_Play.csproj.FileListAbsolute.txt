@@ -1,0 +1,9 @@
+c:\users\duke\documents\visual studio 2017\Projects\UI_Play\UI_Play\bin\Debug\UI_Play.exe.config
+c:\users\duke\documents\visual studio 2017\Projects\UI_Play\UI_Play\bin\Debug\UI_Play.exe
+c:\users\duke\documents\visual studio 2017\Projects\UI_Play\UI_Play\bin\Debug\UI_Play.pdb
+c:\users\duke\documents\visual studio 2017\Projects\UI_Play\UI_Play\obj\Debug\UI_Play.csprojResolveAssemblyReference.cache
+c:\users\duke\documents\visual studio 2017\Projects\UI_Play\UI_Play\obj\Debug\UI_Play.Form1.resources
+c:\users\duke\documents\visual studio 2017\Projects\UI_Play\UI_Play\obj\Debug\UI_Play.Properties.Resources.resources
+c:\users\duke\documents\visual studio 2017\Projects\UI_Play\UI_Play\obj\Debug\UI_Play.csproj.GenerateResource.Cache
+c:\users\duke\documents\visual studio 2017\Projects\UI_Play\UI_Play\obj\Debug\UI_Play.exe
+c:\users\duke\documents\visual studio 2017\Projects\UI_Play\UI_Play\obj\Debug\UI_Play.pdb

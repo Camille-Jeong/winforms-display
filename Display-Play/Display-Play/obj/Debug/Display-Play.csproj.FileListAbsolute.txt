@@ -1,9 +1,0 @@
-c:\users\duke\documents\visual studio 2017\Projects\Display-Play\Display-Play\bin\Debug\Display-Play.exe.config
-c:\users\duke\documents\visual studio 2017\Projects\Display-Play\Display-Play\bin\Debug\Display-Play.exe
-c:\users\duke\documents\visual studio 2017\Projects\Display-Play\Display-Play\bin\Debug\Display-Play.pdb
-c:\users\duke\documents\visual studio 2017\Projects\Display-Play\Display-Play\obj\Debug\Display-Play.csprojResolveAssemblyReference.cache
-c:\users\duke\documents\visual studio 2017\Projects\Display-Play\Display-Play\obj\Debug\Display_Play.Form1.resources
-c:\users\duke\documents\visual studio 2017\Projects\Display-Play\Display-Play\obj\Debug\Display_Play.Properties.Resources.resources
-c:\users\duke\documents\visual studio 2017\Projects\Display-Play\Display-Play\obj\Debug\Display-Play.csproj.GenerateResource.Cache
-c:\users\duke\documents\visual studio 2017\Projects\Display-Play\Display-Play\obj\Debug\Display-Play.exe
-c:\users\duke\documents\visual studio 2017\Projects\Display-Play\Display-Play\obj\Debug\Display-Play.pdb
