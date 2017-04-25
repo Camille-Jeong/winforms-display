@@ -17,7 +17,7 @@ namespace UI_Play
         int _Height = SystemInformation.VirtualScreen.Height;
 
         string _Artist, _Title;
-        int Length, WaitTime, IsPause = 0;
+        int Length, WaitTime, IsPause = 0, waitCount = 0;
 
         public Form1()
         {
@@ -36,7 +36,7 @@ namespace UI_Play
 
             SetManagers();
             SetData();
-            SetLocation(Length);
+            SetLocation();
         }
 
         private void SetManagers()
@@ -49,7 +49,7 @@ namespace UI_Play
         //We will change SetData() to GetData() that get Data from TCP socket communication.
         private void SetData()
         {
-            Length = 30;
+            Length = 10;
             WaitTime = 200;
             _Artist = "Justin Bieber";
             _Title = "Test Love Yourself (PURPOSE : The Movement)";
@@ -57,10 +57,9 @@ namespace UI_Play
             ProgressBarManager.SetDefault(Length);
         }
 
-        private void SetLocation(int _length)
+        private void SetLocation()
         {
-            LocationManager.SetLabelLocation(Artist);
-            LocationManager.SetLabelLocation(Title);
+            LocationManager.SetLabelLocation(Artist, Title,Temp);
             LocationManager.SetProgressBarLocation(ProgressBar, PlayingTime, RemainingTime);
             LocationManager.SetStatusLabelsLocation(Bitwidth, SamplingRate, FileFormat);
         }
@@ -72,11 +71,22 @@ namespace UI_Play
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            if (ProgressBarManager.TimerTick())
+            if (ProgressBarManager.IsFinish())
             {
-                timer1.Stop();
-                timer2.Stop();
+                if (waitCount == 20)//Wait for Reset Value and Location
+                {
+                    waitCount = 0;
+                    IsPause = 0;
+                    timer1.Stop();
+                    timer2.Stop();
+                    SetData();//Reset Default Value
+                    SetLocation();//Reset Default Location
+                }
+                else
+                    waitCount++;
             }
+            else
+                ProgressBarManager.TimerTick();
         }
 
         //We will change this Func to use HW Button
@@ -92,7 +102,7 @@ namespace UI_Play
             {
                 timer1.Stop();
                 timer2.Stop();
-                SetLocation(Length);
+                SetLocation();
             }
             IsPause = IsPause + 1;
         }

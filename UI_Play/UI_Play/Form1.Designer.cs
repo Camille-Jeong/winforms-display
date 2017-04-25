@@ -70,7 +70,6 @@
             this.ProgressBar.Location = new System.Drawing.Point(318, 891);
             this.ProgressBar.Name = "ProgressBar";
             this.ProgressBar.Size = new System.Drawing.Size(1102, 42);
-            this.ProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.ProgressBar.TabIndex = 5;
             this.ProgressBar.Value = 50;
             this.ProgressBar.Click += new System.EventHandler(this.ProgressBar_Click);
@@ -137,6 +136,7 @@
             // 
             // timer2
             // 
+            this.timer2.Interval = 10;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Temp
