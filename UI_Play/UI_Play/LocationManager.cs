@@ -21,21 +21,32 @@ namespace UI_Play
 
         }
 
-        static public void SetLabelLocation(Label label)
+        static public void SetLabelLocation(Label _label1,Label _label2,Label _temp)
         {
-            if (label.Name == "Artist")
-                startYpos = (Height / 5);
-            else
-                startYpos = (Height / 7) * 3;
-            if (label.Width <= Width)
+            startYpos = (Height / 5);
+            if (_label1.Width <= Width)
             {
-                startXpos = (Width - label.Width) / 2;
+                startXpos = (Width - _label1.Width) / 2;
             }
             else
             {
                 startXpos = 0;
             }
-            label.Location = new Point(startXpos, startYpos);
+            _label1.Location = new Point(startXpos, startYpos);
+
+            startYpos = (Height / 7) * 3;
+            if (_label2.Width <= Width)
+            {
+                startXpos = (Width - _label2.Width) / 2;
+            }
+            else
+            {
+                startXpos = 0;
+            }
+            _label2.Location = new Point(startXpos, startYpos);
+
+            startXpos = Width;
+            _temp.Location = new Point(startXpos, startYpos);
         }
 
         static public void SetProgressBarLocation(ProgressBar progressbar, Label _label1, Label _label2)

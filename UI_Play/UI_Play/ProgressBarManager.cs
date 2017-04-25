@@ -13,7 +13,7 @@ namespace UI_Play
         static int gap;                        //set progressbar increase cycle
         static int length_s;                   //length.text second
         static public int state_s;             //state.text second
-        static public bool mode = true, _return = false;
+        static public bool mode = true, _return;
 
         static ProgressBar ProgressBar;
         static Label PlayingTime, RemainingTime;
@@ -36,32 +36,32 @@ namespace UI_Play
             else
                 mode = false;
             state_s = 0;
-            gap = length_s / 10;
+            gap = length_s;
             ProgressBar.Value = 0;
-
+            _return = false;
             PlayingTime.Text = CheckLength(state_s);
             RemainingTime.Text = CheckLength(length_s);
         }
 
-        static public bool TimerTick()
+        static public void TimerTick()
         {
             count_G++;
             count_S++;
 
-            if (count_G >= gap)
+            if (count_G == gap)
             {
                 count_G = 0;
-                ProgressBar.Value++;
+                ++ProgressBar.Value;
             }
 
-            if (count_S == 10)
+            if (count_S == 100)
             {
                 count_S = 0;
 
                 if (state_s == length_s)
                 {
                     state_s = 0;
-                    ProgressBar.Value = 0;
+                    //ProgressBar.Value = 0;
                     _return = true;
                 }
                 else
@@ -70,8 +70,6 @@ namespace UI_Play
                 PlayingTime.Text = CheckLength(state_s);
                 RemainingTime.Text = CheckLength(length_s - state_s);
             }
-
-            return _return;
         }
 
         static public void Start(int _status)
@@ -91,6 +89,11 @@ namespace UI_Play
                 _return = TimeSpan.FromSeconds(length).ToString(@"mm\:ss");
             else
                 _return = TimeSpan.FromSeconds(length).ToString(@"hh\:mm\:ss");
+            return _return;
+        }
+
+        static public bool IsFinish()
+        {
             return _return;
         }
     }
