@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace UI_Play
 {
+    /**
+     * This class set primary location of objects
+     **/
     class LocationManager
     {
         static int Width, Height;
@@ -21,6 +24,7 @@ namespace UI_Play
 
         }
 
+        /*Set flow text label location*/
         static public void SetLabelLocation(Label _label1,Label _label2,Label _temp)
         {
             startYpos = (Height / 5);
@@ -49,6 +53,7 @@ namespace UI_Play
             _temp.Location = new Point(startXpos, startYpos);
         }
 
+        /*Set music progress bar location*/
         static public void SetProgressBarLocation(ProgressBar progressbar, Label _label1, Label _label2)
         {
             progressbar.Width = (Width - (_label1.Width + _label2.Width + 80));
@@ -65,6 +70,7 @@ namespace UI_Play
             _label2.Location = new Point(startXpos, startYpos);
         }
 
+        /*Set stream state label location*/
         static public void SetStatusLabelsLocation(Label _label1, Label _label2, Label _label3)
         {
             startXpos = space;

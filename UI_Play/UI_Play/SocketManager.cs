@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace UI_Play
 {
+    /**
+     * This class manage TCP socket
+     **/
     class SocketManager
     {
     }
