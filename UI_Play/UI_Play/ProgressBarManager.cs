@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace UI_Play
 {
+    /**
+     * This class control movement of progressbar 
+     **/
     class ProgressBarManager
     {
         static int count_G, count_S;           //gap(in interval), Second(in interval)
