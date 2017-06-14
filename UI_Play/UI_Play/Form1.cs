@@ -7,6 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VisualEffects;
+using VisualEffects.Easing;
+using VisualEffects.Animations.Effects;
+using UI_Play.View;
+using UI_Play.Animation;
 
 namespace UI_Play
 {
@@ -16,8 +21,13 @@ namespace UI_Play
         int _Width = SystemInformation.VirtualScreen.Width;
         int _Height = SystemInformation.VirtualScreen.Height;
 
-        string _Artist, _Title;
-        int Length, WaitTime, IsPause = 0, waitCount = 0;
+        int WaitTime, _SongId;
+        string _PP;
+
+        string Adress = "192.168.137.241";
+
+        Data data;
+        Status status;
 
         public Form1()
         {
@@ -30,81 +40,110 @@ namespace UI_Play
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
 
-            //
             this.Width = _Width;
             this.Height = _Height;
 
             SetManagers();
+
+            GetData();
             SetData();
             SetLocation();
+
+            StatusConnection.Start();
         }
 
         private void SetManagers()
         {
+            SocketManager.ConnectMPD(Adress);
             MarqueeManager.GetFormsValue(Width, Height, Artist, Title, Temp);
+            SongDataManager.GetFormsValue(BitWidth, SamplingRate, FileFormat);
             ProgressBarManager.GetFormsValue(ProgressBar, PlayingTime, RemainingTime);
             LocationManager.GetFormsValue(this.Width, this.Size.Height);
+            BlacksManager.GetFormsValue(Black1, Black2);
         }
 
-        //We will change SetData() to GetData() that get Data from TCP socket communication.
+        //We will change SetData() to Comunicate() that get Data from TCP socket communication.
+
+        private void GetData()
+        {
+            data = DataManager.GetData();
+            status = StatusManager.GetStatus();
+
+            _SongId = status.SongID;
+            _PP = status.PP;
+        }
         private void SetData()
         {
-            Length = 10;
             WaitTime = 200;
-            _Artist = "Justin Bieber";
-            _Title = "Test Love Yourself (PURPOSE : The Movement)";
-            MarqueeManager.SetDefault(_Artist, _Title, WaitTime);
-            ProgressBarManager.SetDefault(Length);
+
+            MarqueeManager.SetData(data.Artist, data.Title, WaitTime);
+            SongDataManager.SetData(data.BitWidth, data.SamplingRate, data.FileFormat);
+            ProgressBarManager.SetData(data.Length, status.Time);
+            BlacksManager.SetBlack(Artist,Title);
         }
 
         private void SetLocation()
         {
-            LocationManager.SetLabelLocation(Artist, Title,Temp);
+            LocationManager.SetLabelLocation(Artist, Title, Temp);
             LocationManager.SetProgressBarLocation(ProgressBar, PlayingTime, RemainingTime);
-            LocationManager.SetStatusLabelsLocation(Bitwidth, SamplingRate, FileFormat);
+            LocationManager.SetSongDataLocation(BitWidth, SamplingRate, FileFormat);
+            LocationManager.SetBlackLocation(Artist, Title, Black1, Black2, true);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private async void StatusConnection_Tick(object sender, EventArgs e)
+        {
+            status = StatusManager.GetStatus();
+            if (_SongId != status.SongID)
+            {
+                GetData();
+
+                SocketManager.Comunicate("stop");
+                Marquee.Stop();
+                SetLocation();
+
+                AnimationManager.SinkLabel(Artist, Title, Black1.Top, Black2.Top);
+                await Task.Delay(500);
+
+                SetData();
+                LocationManager.SetNext(Artist, Title, Temp);
+                BlacksManager.SetBlack(Artist, Title);
+                LocationManager.SetBlackLocation(Artist, Title, Black1, Black2, false);
+
+                await Task.Delay(500);
+
+                AnimationManager.RiseLabel(Artist, Title, LocationManager.Y1, LocationManager.Y2);
+                await Task.Delay(500);
+
+                SocketManager.Comunicate("play");
+            }
+            else
+            {
+                ProgressBarManager.SetValue(status.Time);
+                if (status.PP.Equals("pause"))
+                {
+                    Marquee.Stop();
+                    SetLocation();
+                }
+                else if (status.PP.Equals("play"))
+                {
+                    if(_PP.Equals("stop"))
+                    {
+                        GetData();
+                        SetData();
+                    }
+                    Marquee.Start();
+                }
+                else if (status.PP.Equals("stop"))
+                {
+                    Marquee.Stop();
+                    SetLocation();
+                }
+            }
+        }
+
+        private void Marquee_Tick(object sender, EventArgs e)
         {
             MarqueeManager.TimerTick();
-        }
-
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            if (ProgressBarManager.IsFinish())
-            {
-                if (waitCount == 20)//Wait for Reset Value and Location
-                {
-                    waitCount = 0;
-                    IsPause = 0;
-                    timer1.Stop();
-                    timer2.Stop();
-                    SetData();//Reset Default Value
-                    SetLocation();//Reset Default Location
-                }
-                else
-                    waitCount++;
-            }
-            else
-                ProgressBarManager.TimerTick();
-        }
-
-        //We will change this Func to use HW Button
-        private void ProgressBar_Click(object sender, EventArgs e)
-        {
-            if (IsPause % 2 == 0)
-            {
-                timer1.Start();
-                ProgressBarManager.Start(IsPause);
-                timer2.Start();
-            }
-            else
-            {
-                timer1.Stop();
-                timer2.Stop();
-                SetLocation();
-            }
-            IsPause = IsPause + 1;
         }
     }
 }

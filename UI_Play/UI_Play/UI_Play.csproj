@@ -43,21 +43,30 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="VisualEffects">
+      <HintPath>..\VisualEffects.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation\AnimationManager.cs" />
+    <Compile Include="Infomation\Data.cs" />
+    <Compile Include="Infomation\DataManager.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocationManager.cs" />
-    <Compile Include="MarqueeManager.cs" />
+    <Compile Include="View\BlacksManager.cs" />
+    <Compile Include="View\LocationManager.cs" />
+    <Compile Include="View\MarqueeManager.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ProgressBarManager.cs" />
+    <Compile Include="View\ProgressBarManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SocketManager.cs" />
-    <Compile Include="StatusLabelsManager.cs" />
+    <Compile Include="Infomation\SocketManager.cs" />
+    <Compile Include="Infomation\Status.cs" />
+    <Compile Include="View\SongDataManager.cs" />
+    <Compile Include="Infomation\StatusManager.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

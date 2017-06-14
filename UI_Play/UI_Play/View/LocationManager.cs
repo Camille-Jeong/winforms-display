@@ -16,36 +16,68 @@ namespace UI_Play
         static int Width, Height;
         static int startXpos, startYpos;
         static int space;
+        static int margin = 30;
+        static public int Y1, Y2;
 
         static public void GetFormsValue(int _Width, int _Height)
         {
             Width = _Width;
             Height = _Height;
-
         }
 
         /*Set flow text label location*/
         static public void SetLabelLocation(Label _label1,Label _label2,Label _temp)
         {
-            startYpos = (Height / 5);
+            startYpos = (Height / 6);
             if (_label1.Width <= Width)
             {
                 startXpos = (Width - _label1.Width) / 2;
             }
             else
             {
-                startXpos = 0;
+                startXpos = margin;
             }
             _label1.Location = new Point(startXpos, startYpos);
 
-            startYpos = (Height / 7) * 3;
+            startYpos = _label1.Bottom + _label1.Size.Height;
             if (_label2.Width <= Width)
             {
                 startXpos = (Width - _label2.Width) / 2;
             }
             else
             {
-                startXpos = 0;
+                startXpos = margin;
+            }
+            _label2.Location = new Point(startXpos, startYpos);
+
+            startXpos = Width;
+            _temp.Location = new Point(startXpos, startYpos);
+
+            Y1 = _label1.Location.Y;
+            Y2 = _label2.Location.Y;
+        }
+
+        static public void SetNext(Label _label1, Label _label2, Label _temp)
+        {
+            startYpos = _label1.Location.Y;
+            if (_label1.Width <= Width)
+            {
+                startXpos = (Width - _label1.Width) / 2;
+            }
+            else
+            {
+                startXpos = margin;
+            }
+            _label1.Location = new Point(startXpos, startYpos);
+
+            startYpos = _label2.Location.Y;
+            if (_label2.Width <= Width)
+            {
+                startXpos = (Width - _label2.Width) / 2;
+            }
+            else
+            {
+                startXpos = margin;
             }
             _label2.Location = new Point(startXpos, startYpos);
 
@@ -71,7 +103,7 @@ namespace UI_Play
         }
 
         /*Set stream state label location*/
-        static public void SetStatusLabelsLocation(Label _label1, Label _label2, Label _label3)
+        static public void SetSongDataLocation(Label _label1, Label _label2, Label _label3)
         {
             startXpos = space;
             startYpos = (Height / 7) * 5;
@@ -82,6 +114,20 @@ namespace UI_Play
 
             startXpos = Width - (space + _label3.Width);
             _label3.Location = new Point(startXpos, startYpos);
+        }
+
+        static public void SetBlackLocation(Label label1, Label label2, Label black1, Label black2, bool isFirst)
+        {
+            if(isFirst)
+            {
+                black1.Location = new Point(label1.Left, label1.Bottom);
+                black2.Location = new Point(label2.Left, label2.Bottom);
+            }
+            else
+            {
+                black1.Location = new Point(label1.Left, black1.Location.Y);
+                black2.Location = new Point(label2.Left, black2.Location.Y);
+            }
         }
     }
 }
