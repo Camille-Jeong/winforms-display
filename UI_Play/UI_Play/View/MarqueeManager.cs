@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,6 +13,7 @@ namespace UI_Play
         static int Width, Height;
         static Label Artist, Title, Temp;
         static int Mode, Tcnt, Status, WaitTime;
+        static int margin = 30;
 
         static public void GetFormsValue(int _Width, int _Height,Label _Artist, Label _Title, Label _temp)
         {
@@ -38,7 +39,7 @@ namespace UI_Play
                 Mode = 0;
         }
 
-        static public void SetDefault(string _Artist, string _Title, int _WaitTime)
+        static public void SetData(string _Artist, string _Title, int _WaitTime)
         {
             Status = 0;
             Tcnt = 0;
@@ -53,9 +54,9 @@ namespace UI_Play
             int xpos, ypos, _xpos;
             ypos = label.Location.Y;
 
-            if (Temp.Left == 0)
+            if (Temp.Left < 32 || Temp.Left == margin)
             {
-                label.Location = new System.Drawing.Point(0, ypos);
+                label.Location = new System.Drawing.Point(margin, ypos);
                 TempSetting(label);
             }
             else
@@ -79,7 +80,7 @@ namespace UI_Play
 
         static public bool CheckCycle(Label label)
         {
-            if (label.Left == 0) return true;
+            if (label.Left == margin) return true;
             else return false;
         }
 

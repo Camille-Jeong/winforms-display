@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace UI_Play
 {
-    /**
-     * This class manage TCP socket
-     **/
-    class SocketManager
+    public struct Status
     {
+        public int SongID;
+        public int Time;
+        public string PP;
     }
+
 }
