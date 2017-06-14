@@ -16,3 +16,13 @@ C:\Users\Duke\Documents\Work-Space\winforms-display\UI_Play\UI_Play\obj\Debug\UI
 C:\Users\Duke\Documents\Work-Space\winforms-display\UI_Play\UI_Play\obj\Debug\UI_Play.csproj.GenerateResource.Cache
 C:\Users\Duke\Documents\Work-Space\winforms-display\UI_Play\UI_Play\obj\Debug\UI_Play.exe
 C:\Users\Duke\Documents\Work-Space\winforms-display\UI_Play\UI_Play\obj\Debug\UI_Play.pdb
+C:\Users\Duke\Work-Space\Winform-display\UI_Play\UI_Play\bin\Debug\UI_Play.exe.config
+C:\Users\Duke\Work-Space\Winform-display\UI_Play\UI_Play\bin\Debug\UI_Play.exe
+C:\Users\Duke\Work-Space\Winform-display\UI_Play\UI_Play\bin\Debug\UI_Play.pdb
+C:\Users\Duke\Work-Space\Winform-display\UI_Play\UI_Play\obj\Debug\UI_Play.csprojResolveAssemblyReference.cache
+C:\Users\Duke\Work-Space\Winform-display\UI_Play\UI_Play\obj\Debug\UI_Play.Form1.resources
+C:\Users\Duke\Work-Space\Winform-display\UI_Play\UI_Play\obj\Debug\UI_Play.Properties.Resources.resources
+C:\Users\Duke\Work-Space\Winform-display\UI_Play\UI_Play\obj\Debug\UI_Play.csproj.GenerateResource.Cache
+C:\Users\Duke\Work-Space\Winform-display\UI_Play\UI_Play\obj\Debug\UI_Play.exe
+C:\Users\Duke\Work-Space\Winform-display\UI_Play\UI_Play\obj\Debug\UI_Play.pdb
+C:\Users\Duke\Work-Space\Winform-display\UI_Play\UI_Play\bin\Debug\VisualEffects.dll
